@@ -1,5 +1,6 @@
 import { JSDOM } from 'jsdom';
 import { async } from 'regenerator-runtime';
+import { DB_URL } from './config.js';
 
 export const getJSON = async function(promiseArray)
 { 
@@ -22,7 +23,24 @@ export const getJSON = async function(promiseArray)
     }
     catch(err)
     {
-        console.log(err.message);
         throw err;
     }
 };
+
+export const getDbData = async function()
+{
+    try
+    {
+        const response = await fetch(`${DB_URL}`);
+        if(!response.ok) throw new Error(response.message);
+        
+        const res = await response.json();
+        if(res.status === 'failed') throw new Error(res.message);
+        return res.result;
+    }
+    catch(err)
+    {
+        throw err;
+    }
+    
+}

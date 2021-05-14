@@ -1,543 +1,10 @@
-import { MY_API_URL } from './config.js';
+import { MY_API_URL, DB_URL } from './config.js';
 import { async } from 'regenerator-runtime';
-import { getJSON } from './helpers.js';
+import { getJSON, getDbData } from './helpers.js';
+import * as userModel from './userModel.js';
 
-export const state = {
-    allUsersData : [
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-        {
-            roll : '18071A12F6',
-            name : 'Nampally Anurag',
-            codechef : 'sdroy01',
-            hackerrank : 'anurag_nampally',
-            interviewbit : 'anurag.nampally',
-        },
-        {
-            roll : '18071A05G7',
-            name : 'Thakur Rahul',
-            codechef : 'rahul03692',
-            hackerrank : 'rahul03692',
-            interviewbit : 'rahul03692',
-        },
-        {
-            roll : '18071A12D3',
-            name : 'Ullas Reddy',
-            codechef : 'ullasreddy3663',
-            hackerrank : 'ullasreddy3663',
-            interviewbit : 'ullasreddy3663',
-        },
-        {
-            roll : '17071A12C4',
-            name : 'Prashanth Bhonagiri',
-            codechef : 'prashanth_b18',
-            hackerrank : 'prashanth_bhona1',
-            interviewbit : 'prashanth-bhonagiri',
-        },
-    ]
+const state = {
+    allUsersData : []
 };
 
 const getCodechef = async function(users)
@@ -550,21 +17,21 @@ const getCodechef = async function(users)
         });
 
         const values = await getJSON(promiseArray);
+
         users.forEach((user, idx) => {
             const dom = values[idx];
+            
             let r = parseInt(dom.window.document.querySelector('.rating-number').textContent);
             let solved = dom.window.document.querySelector('section.problems-solved h5').textContent;
             let p = parseInt(solved.slice(solved.indexOf('(') + 1, solved.length - 1));
             
             r = (r > 1300) ? r - 1330 : 0;
-            console.log(user.name, 'codechef', r, p);
             user.codechefSolved = Math.ceil((p * 10 + (r * r)/30));
         });
     }
     catch(err)
     {
-        console.log(err.message);
-        console.log(err.message);
+        throw err;
     }
 };
 
@@ -576,23 +43,31 @@ const getHackerRank = async function(users)
         users.forEach(user => {
             promiseArray.push(fetch(`${MY_API_URL}https://www.hackerrank.com/rest/hackers/${user.hackerrank}/scores_elo`));
         });
+
         const responseArr = [];
         const response = await Promise.all(promiseArray);
-        response.forEach(res => {responseArr.push(res.json())});
+        response.forEach(res => {
+            if(!res.ok) responseArr.push(new Promise(resolve => resolve('404')));
+            else responseArr.push(res.json())
+        });
         const values = await Promise.all(responseArr);
 
         users.forEach((user,idx) => {
-            let score = 0;
-            values[idx].forEach(subject => {
-                if(subject.track_id === 3 || subject.track_id === 17) 
-                    score += subject.practice.score;
-            })
-            user.hackerrankSolved = Math.ceil(score);
+            if(values[idx] === '404') 
+                user.hackerrankSolved = 0;
+            else
+            {
+                let score = 0;
+                values[idx].forEach(subject => {
+                    if(subject.track_id === 3 || subject.track_id === 17) 
+                        score += subject.practice.score;
+                })
+                user.hackerrankSolved = Math.ceil(score);
+            }
         });
     }
     catch(err)
     {
-        console.log(err.message);
         throw err;
     }
 };
@@ -609,21 +84,63 @@ const getInterviewBit = async function(users)
         const values = await getJSON(promiseArray);
         users.forEach((user, idx) => {
             const dom = values[idx];
-            console.log(dom);
-            let score = dom.window.document.querySelector('div.stat:not(.rank) div[class="txt"]').textContent;
-            
-            user.interviewbitSolved = Math.ceil(parseInt(score)/3);
+            let score = dom.window.document.querySelector('div.stat:not(.rank) div[class="txt"]')
+            if(score) user.interviewbitSolved = Math.ceil(parseInt(score.textContent)/3);
+            else user.interviewbitSolved = 0;
         });
     }
 
     catch(err)
     {
-        console.log(err.message);
         throw err;
     }
 };
 
-export const getTen = async function(start)
+const getLeetcode = async function(users)
+{
+    try
+    {
+        const promiseArray = [];
+        users.forEach(user => {
+            console.log(user.hackerrank);
+            const data = {
+                'OperationName': "getUserProfile",
+                'query': "query getUserProfile($username: String!) {\n  allQuestionsCount {\n    difficulty\n    count\n    __typename\n  }\n  matchedUser(username: $username) {\n    username\n    socialAccounts\n    githubUrl\n    contributions {\n      points\n      questionCount\n      testcaseCount\n      __typename\n    }\n    profile {\n      realName\n      websites\n      countryName\n      skillTags\n      company\n      school\n      starRating\n      aboutMe\n      userAvatar\n      reputation\n      ranking\n      __typename\n    }\n    submissionCalendar\n    submitStats {\n      acSubmissionNum {\n        difficulty\n        count\n        submissions\n        __typename\n      }\n      totalSubmissionNum {\n        difficulty\n        count\n        submissions\n        __typename\n      }\n      __typename\n    }\n    badges {\n      id\n      displayName\n      icon\n      creationDate\n      __typename\n    }\n    upcomingBadges {\n      name\n      icon\n      __typename\n    }\n    activeBadge {\n      id\n      __typename\n    }\n    __typename\n  }\n}\n",
+                'variables': {'username': user.hackerrank}
+            }
+            promiseArray.push(fetch("https://programmerplanet.herokuapp.com/https://leetcode.com/graphql", {
+                headers : {
+                 "content-type": "application/json"
+               },
+               body: JSON.stringify(data),
+               method : "POST"
+            }));
+        });
+
+        const responseArr = [];
+        const response = await Promise.all(promiseArray);
+        response.forEach(res => {responseArr.push(res.json())});
+        const values = await Promise.all(responseArr);
+
+        users.forEach((user, idx) => {
+            if(values[idx].data.matchedUser === null)
+                user.leetcodeSolved = 0;
+            else
+            {
+                const score = values[idx].data.matchedUser.submitStats.acSubmissionNum[0].count
+                if(score) user.leetcodeSolved = 20 * parseInt(score);
+                else user.leetcodeSolved = 0;
+            }
+        });
+    }
+
+    catch(err)
+    {
+        throw err;
+    }
+};
+
+/*export const getTen = async function(start)
 {
     try
     {
@@ -635,24 +152,52 @@ export const getTen = async function(start)
         console.log(err.message);
         throw err;
     }
-}
+}*/
 
-
-export const getAllUsersData = async function()
+const getAllUsersData = async function()
 {
     try
-    { 
-        await getInterviewBit(state.allUsersData.slice(0, 10));
-        await Promise.all([getCodechef(state.allUsersData), getHackerRank(state.allUsersData)]);
-        await getInterviewBit(state.allUsersData.slice(0, 10));
+    {   
+        await Promise.all([getCodechef(state.allUsersData), getHackerRank(state.allUsersData), getInterviewBit(state.allUsersData), getLeetcode(state.allUsersData)]);
+        
         state.allUsersData.forEach(user => {
-            user.overall = user.codechefSolved + user.hackerrankSolved + user.interviewbitSolved;
+            
+            user.internalcontestSolved = 0;
+            user.overall = user.codechefSolved + user.hackerrankSolved + user.interviewbitSolved + user.leetcodeSolved;
         });
+
+        const response = await fetch(`${DB_URL}update`, {
+            headers : {
+                'Content-type' : 'application/json'
+            },
+            method : 'POST',
+            body : JSON.stringify(state.allUsersData)
+        });
+
+        if(!response.ok) throw new Error(response.message);
+        
+        const res = await response.json();
+        if(res.status === false) throw new Error(res.message);
     }
     catch(err)
     {
-        console.log(err.message);
         throw err;
     }
 };
+
+export const initalizeUsersData = async function()
+{
+    try
+    {   
+        const dbData = await getDbData();
+        state.allUsersData = dbData;
+        await getAllUsersData();
+        state.allUsersData.sort((a, b) => b.overall - a.overall);
+        userModel.state.allUsersData = state.allUsersData;
+    }
+    catch(err)
+    {
+        throw err;
+    }
+}
 

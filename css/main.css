@@ -1,0 +1,57 @@
+.spinner {
+    margin: 5rem auto;
+    text-align: center;
+}
+.spinner svg {
+    height: 6rem;
+    width: 6rem;
+    fill: #f38e82;
+    animation: rotate 2s infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.tableStyle {
+  border-radius: 0.7rem;
+  white-space: nowrap;
+  padding : 10px !important;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+}
+.heading {
+    margin : 5%;
+}
+body {
+  margin : 5% 5% 0 5%;
+  background-color: #fcf1f1;
+}
+
+.siteName {
+  font-weight: 500;
+  font-size : 50px;
+  font-family : "Ubuntu Mono",monospace;
+  padding-left : 15px;
+}
+.error{
+  height: 20%;
+  color: white;
+  background-color: red;  
+}
+
+table thead tr th {
+    border-top: 0!important;
+}
+table tbody tr td {
+    border-top: 0!important;
+}

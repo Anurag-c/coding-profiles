@@ -1,5 +1,7 @@
+import * as userModel from './userModel.js';
 import * as model from './model.js';
 import view from './view.js';
+import {SCRAP_KEY} from './config.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime';
@@ -10,8 +12,8 @@ const controlUsers = async function()
     try
     {
         view.renderSpinner();
-        await model.getAllUsersData();
-        view.render(model.state.allUsersData);
+        await userModel.getAllUsersData();
+        view.render(userModel.state.allUsersData);
     }
     catch(err)
     {
@@ -19,4 +21,31 @@ const controlUsers = async function()
     }
 };
 
-controlUsers();
+const controlScrap = async function()
+{
+    try
+    {
+        const hash = window.location.hash.slice(1);
+        console.log(hash);
+        
+        if(hash != SCRAP_KEY) controlUsers();
+        else if(hash === SCRAP_KEY)
+        {
+            view.renderSpinner();
+            await model.initalizeUsersData();
+            view.render(userModel.state.allUsersData);
+        }
+    }
+    catch(err)
+    {
+        view.renderError(err.message);
+    } 
+}
+
+const init = function()
+{
+    view.addHandler(controlScrap);
+};
+
+init();
+

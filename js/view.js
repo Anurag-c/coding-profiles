@@ -3,7 +3,7 @@ import icons from 'url:../icons.svg';
 class View 
 {
     _parentElement = document.querySelector('.dataRows');
-    _spinnerElement = document.querySelector('.fluid-container');
+    _spinnerElement = document.querySelector('.tableContainer');
     _message = 'incorrect response';
 
     render(data)
@@ -12,11 +12,13 @@ class View
         this._data = data;
         const markup = this._generateMarkup();
         document.querySelector('.spinner')?.remove();
+        document.querySelector('.error')?.remove();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
 
     _clear()
     {
+        console.log('cleared');
         this._parentElement.innerHTML = '';
     }
 
@@ -36,12 +38,12 @@ class View
     renderError(message = this._errorMessage)
     {
       const markup = `
-          <div class = "error">
+          <div class = "error text-center">
             <p>${message}</p>
           </div>`;
       
       this._clear();
-      this._parentElement.insertAdjacentHTML('afterbegin', markup);
+      this._spinnerElement.insertAdjacentHTML('beforeEnd', markup);
     }
 
     _generateMarkup()
@@ -59,9 +61,15 @@ class View
             <td>${user.hackerrankSolved}</td>
             <td>${user.codechefSolved}</td>
             <td>${user.interviewbitSolved}</td>
-            <td>${user.internalContest}</td>
+            <td>${user.leetcodeSolved}</td>
             <td>${user.overall}</td>
         </tr>`;
+    }
+
+    addHandler(handler)
+    {
+        window.addEventListener('hashchange', handler);
+        window.addEventListener('load', handler);
     }
 }
 
